@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+</head>
+<body>
+    <h1 th:text="${mensaje}"></h1>
+    <p>Producto guardado:</p>
+    <ul>
+        <li>Nombre: <span th:text="${producto.nombre}"></span></li>
+        <li>Descripción: <span th:text="${producto.descripcion}"></span></li>
+        <li>Precio: <span th:text="${producto.precio}"></span></li>
+        <li>Categoría: <span th:text="${producto.categoria.nombre}"></span></li>
+    </ul>
+    <a href="/agregarProducto">Añadir otro producto</a>
+</body>
+</html>

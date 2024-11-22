@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestión de Artículos</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<h1>Lista de Artículos</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="articulo : ${articulos}">
+            <td th:text="${articulo.id}"></td>
+            <td th:text="${articulo.nombre}"></td>
+            <td th:text="${articulo.precio}"></td>
+            <td th:text="${articulo.cantidad}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Agregar Artículo</h2>
+<form th:action="@{/articulos/agregar}" th:object="${nuevoArticulo}" method="post">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required><br>
+
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" name="precio" step="0.01" th:field="*{precio}" required><br>
+
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" name="cantidad" th:field="*{cantidad}" required><br>
+
+    <button type="submit">Agregar</button>
+</form>
+
+<script>
+    // Mostrar el popup si el parámetro "success" está en la URL
+    if (window.location.href.includes('success')) {
+        Swal.fire({
+            title: '¡Artículo agregado!',
+            text: 'El artículo se ha agregado correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+        });
+    }
+</script>
+</body>
+</html>

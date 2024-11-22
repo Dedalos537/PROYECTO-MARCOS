@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-6 mx-auto rounded border p-4">
+                <h2 class="text-center mb-4">Regístrate</h2>
+                <hr>
+
+                <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fas fa-fireworks"></i>
+                        <strong>
+                            
+                            &nbsp;
+                            CUENTA CREADA EXITOSAMENTE ¡FELICITACIONES !!!
+                            &nbsp;
+                            
+                            <a href="/login" class="ms-2">Inicia Sesión Aquí</a>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                            </button>
+                        </strong>
+                        <i class="fas fa-fireworks"></i>
+                </div>
+
+                <form method="post" th:object="${registroDTO}">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">
+                            Nombre Completo:
+                        </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${registroDTO.nombrec}">
+                            <p th:if="${#fields.hasErrors('nombrec')}" th:errorclass="text-danger"
+                                th:errors="${registroDTO.nombrec}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">
+                            Email:
+                        </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${registroDTO.email}">
+                            <p th:if="${#fields.hasErrors('email')}" th:errorclass="text-danger"
+                                th:errors="${registroDTO.email}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">
+                            Dirección:
+                        </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${registroDTO.direccion}">
+                            <p th:if="${#fields.hasErrors('direccion')}" th:errorclass="text-danger"
+                                th:errors="${registroDTO.direccion}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">
+                            Teléfono:
+                        </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${registroDTO.phone}">
+                            <p th:if="${#fields.hasErrors('phone')}" th:errorclass="text-danger"
+                                th:errors="${registroDTO.phone}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">
+                            Contraseña:
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="password" minlength="6" class="form-control" th:field="${registroDTO.password}" required>
+                            <p th:if="${#fields.hasErrors('password')}" th:errorclass="text-danger"
+                                th:errors="${registroDTO.password}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">
+                            Repetir Contraseña:
+                        </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${registroDTO.confirmpassword}">
+                            <p th:if="${#fields.hasErrors('confirmpassword')}" th:errorclass="text-danger"
+                                th:errors="${registroDTO.confirmpassword}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="offset-sm-4 col-sm-4 d-grid">
+                            <button class="btn btn-primary" type="submit">
+                                Aceptar
+                            </button>
+                        </div>
+                        <div class="col-sm-4 d-grid">
+                            <a href="/" class="btn btn-outline-primary">
+                                Cancelar
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
