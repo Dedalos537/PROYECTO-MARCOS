@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/Img/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/eventos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bahnschrift+SemiBold:wght@400;700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Eventos</title>
+</head>
+<Style>
+    body {
+        font-family: 'Bahnschrift', sans-serif;
+    }
+
+    input,
+    textarea {
+        transition: all 1.5s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+        box-shadow: 0 0 10px rgba(0, 86, 179, 0.5);
+        padding: 1rem;
+        border-radius: 1rem;
+        border-color: #0056b3;
+
+    }
+
+    .form-control {
+        border-radius: 20px;
+        padding: 15px;
+        font-size: 1rem;
+        transition: background-color 1.5s ease, height 1.5s ease;
+    }
+
+    .form-range {
+        width: 100%;
+    }
+
+    .completed-field {
+        box-shadow: 0 0 15px rgba(229, 255, 0, 0.6);
+        border-color: #f8bfee;
+    }
+
+    .badge {
+        font-size: 1.2rem;
+        margin-left: 0.5rem;
+    }
+
+    .animate-button {
+        position: relative;
+        overflow: hidden;
+        transition: background-color 0.5s ease;
+    }
+
+    .animate-button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(0, 123, 255, 0.5);
+        border-radius: 50%;
+        transition: transform 0.5s ease;
+        transform: translate(-50%, -50%) scale(0);
+        z-index: 0;
+    }
+
+    .animate-button:hover::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .animate-button:hover {
+        color: white;
+    }
+
+    .btn {
+        position: relative;
+        z-index: 1;
+    }
+</Style>
+
+<body
+    style="font-family: Bahnschrift SemiBold SemiConden; background-image: url('/Img/FondoEventos.jpeg'); background-repeat: no-repeat; background-size: cover;"
+    class="bg-opacity-75">
+   <!--Navbar-->
+   <div th:replace="fragments/navbar :: navbar"></div>
+
+     <!-- Main Content -->
+     <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center text-white">
+                <h1 class="display-1">Haz que tus eventos sean mágicos con Nosotros</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center ">
+            <div class="col-md-6 p-4 rounded-5 bg-dark bg-opacity-75 text-white ">
+                <h2 class="mb-4">Cotiza tu evento</h2>
+                <p class="mb-4">Requerimos un mínimo de 20 personas para reservar un evento</p>
+
+                <div class="container mt-5">
+                    <form th:action="@{/WebSite/Eventos}" th:object="${evento}" method="post" id="eventosConsulta"
+                        class="needs-validation rounded-5 p-4 bg-light" novalidate>
+
+                        <div class="mb-3">
+                            <input id="nombreEvento" type="text" th:field="*{nombre}"
+                                class="form-control rounded-pill bg-light bg-opacity-75" placeholder="Nombre" required>
+                            <div class="invalid-feedback">Por favor, ingresa tu nombre.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <input id="apellidoEvento" type="text" th:field="*{apellido}"
+                                class="form-control rounded-pill bg-light bg-opacity-75" placeholder="Apellido"
+                                required>
+                            <div class="invalid-feedback">Por favor, ingresa tu apellido.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <input id="emailEvento" type="email" th:field="*{email}"
+                                class="form-control rounded-pill bg-light bg-opacity-75" placeholder="Email" required>
+                            <div class="invalid-feedback">Por favor, ingresa un email válido.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <input id="telEvento" type="tel" th:field="*{telefono}"
+                                class="form-control rounded-pill bg-light bg-opacity-75" placeholder="Teléfono"
+                                required>
+                            <div class="invalid-feedback">Por favor, ingresa tu número de teléfono.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <input id="dateEvento" type="date" th:field="*{fecha}"
+                                class="form-control rounded-pill bg-light bg-opacity-75" placeholder="Fecha" required>
+                            <div class="invalid-feedback">Por favor, selecciona una fecha.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <input id="timeEvento" type="time" th:field="*{hora}"
+                                class="form-control rounded-pill bg-light bg-opacity-75" placeholder="Hora" required>
+                            <div class="invalid-feedback">Por favor, selecciona una hora.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="numberEvento" class="form-label text-black">Selecciona número de
+                                personas</label>
+                            <input id="numberEvento" th:field="*{numeroPersonas}" type="range" min="20" max="200"
+                                value="20" class="form-range" required>
+                            <span id="personasCount" class="badge bg-primary p-2 rounded-3">20</span>
+                            <div class="invalid-feedback">El número mínimo es 20 personas y máximo 200.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea id="comentariosEvento" th:field="*{comentarios}"
+                                class="form-control rounded-4 bg-light bg-opacity-75"
+                                placeholder="Comentarios"></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn"
+                            class="btn btn-primary w-100 rounded-pill animate-button">Enviar</button>
+                    </form>
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content text-bg-success">
+                                <div class="modal-header border-0">
+                                    <h5 class="modal-title" id="successModalLabel">Éxito</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-bg-success">
+                                    <h3 class="text-center">¡Formulario enviado correctamente!</h3>
+                                </div>
+                                <div class="modal-footer border-0">
+                                    <button type="button" class="btn btn-outline-light"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+    </main>
+    <footer class="bg-dark bg-opacity-75 text-center text-white text-center py-4 mt-5 rounded-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-3 mb-md-0 text">
+                    <h5>&copy; 2024 Abrazo Culinario. Todos los derechos reservados.</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h6>Síguenos en redes sociales</h6>
+                    <a href="https://facebook.com" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="https://twitter.com" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="https://instagram.com" class="text-white"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+        <script src="/js/eventos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>  
+</body>
+
+</html>

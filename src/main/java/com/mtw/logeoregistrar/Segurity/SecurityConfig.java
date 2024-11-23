@@ -17,7 +17,10 @@ public class SecurityConfig{
         return http
         
                     .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/", "/registrate", "/login", "/contact", "/PideOnline", "/agregarProducto", "/guardarProducto","/Cart","/css/","/js/","/img/").permitAll()
+                    .requestMatchers("/css/**","/js/**","/img/**",//statics
+                    "/", "/registrate", "/login", "/contact",//sin login
+                    "/nosotros","/eventos", "/PideOnline", "/agregarProducto", //con login
+                    "/guardarProducto","/Cart").permitAll()
                     .anyRequest().authenticated()
                 )
     

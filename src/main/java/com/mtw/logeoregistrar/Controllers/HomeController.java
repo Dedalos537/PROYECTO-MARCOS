@@ -11,10 +11,19 @@ public class HomeController {
     public String home(){
         return "Index";
     }
+    @GetMapping("/nosotros")
+    public String nosotros(){
+        return "Nosotros"; 
+    }
+    @GetMapping("/Eventos")
+    public String eventos(){
+        return "Eventos"; 
+    }
 
     @PostMapping({"/contact","/contact/"})
     public String contact(){
         return "Contact";
     }
+
 
 }
