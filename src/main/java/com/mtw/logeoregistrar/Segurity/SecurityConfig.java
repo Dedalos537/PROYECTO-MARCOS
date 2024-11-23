@@ -19,7 +19,7 @@ public class SecurityConfig{
                     .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/css/**","/js/**","/img/**",//statics
                     "/", "/registrate", "/login", "/contact",//sin login
-                    "/nosotros","/eventos", "/PideOnline", "/agregarProducto", //con login
+                    "/nosotros","/eventos", "reservaonline","/PideOnline", "/agregarProducto", //con login
                     "/guardarProducto","/Cart").permitAll()
                     .anyRequest().authenticated()
                 )
